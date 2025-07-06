@@ -12,7 +12,7 @@ export default function MiniGames() {
     <Card>
       <CardContent>
         <Typography variant="h4" gutterBottom>
-          Mini-Games
+          Mini-Games!
         </Typography>
         <List>
           <ListItem button component={Link} to="pvt">
