@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Card } from "../ui/card";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 const initialQuestions = [
   {
@@ -59,31 +62,49 @@ export default function Questionnaire() {
   };
 
   return (
-    <div>
-      <h2>Daily Questionnaire</h2>
-      {!showFollowUp ? (
-        <div>
-          <label>{currentQuestion.text}</label>
-          <input
-            type={currentQuestion.type}
-            min={currentQuestion.min}
-            max={currentQuestion.max}
-            value={answers[currentQuestion.id] || ""}
-            onChange={handleChange}
-          />
-          <button onClick={handleNext}>Next</button>
-        </div>
-      ) : (
-        <div>
-          <label>{followUpQuestions.caffeine.question.text}</label>
-          <input
-            type="text"
-            value={answers.caffeine_times || ""}
-            onChange={handleFollowUp}
-          />
-          <button onClick={handleFollowUpNext}>Finish</button>
-        </div>
-      )}
+    <div className="flex justify-center items-center min-h-[60vh] bg-gradient-to-br from-blue-100 via-pink-100 to-yellow-100">
+      <Card className="w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-blue-600">
+          Daily Questionnaire
+        </h2>
+        {!showFollowUp ? (
+          <div className="space-y-4">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              {currentQuestion.text}
+            </label>
+            <Input
+              type={currentQuestion.type}
+              min={currentQuestion.min}
+              max={currentQuestion.max}
+              value={answers[currentQuestion.id] || ""}
+              onChange={handleChange}
+              className="mb-4"
+            />
+            <Button onClick={handleNext} variant="primary" className="w-full">
+              Next
+            </Button>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              {followUpQuestions.caffeine.question.text}
+            </label>
+            <Input
+              type="text"
+              value={answers.caffeine_times || ""}
+              onChange={handleFollowUp}
+              className="mb-4"
+            />
+            <Button
+              onClick={handleFollowUpNext}
+              variant="secondary"
+              className="w-full"
+            >
+              Finish
+            </Button>
+          </div>
+        )}
+      </Card>
     </div>
   );
 }

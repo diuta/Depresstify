@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Card } from "../ui/card";
+import { Button } from "../ui/button";
 
 export default function PVT() {
   const [waiting, setWaiting] = useState(false);
@@ -31,27 +33,30 @@ export default function PVT() {
   };
 
   return (
-    <div>
-      <h2>PVT Reaction Time Test</h2>
-      <button onClick={startGame}>Start</button>
-      <div
-        onClick={handleClick}
-        style={{
-          marginTop: 20,
-          width: 200,
-          height: 100,
-          background: waiting ? "#ccc" : "#4caf50",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#fff",
-          fontSize: 24,
-          cursor: "pointer",
-        }}
-      >
-        {message}
-      </div>
-      {reactionTime && <div>Try again to improve your score!</div>}
+    <div className="flex justify-center items-center min-h-[60vh] bg-gradient-to-br from-pink-100 via-blue-100 to-yellow-100">
+      <Card className="w-full max-w-md flex flex-col items-center">
+        <h2 className="text-2xl font-bold mb-6 text-pink-600">
+          PVT Reaction Time Test
+        </h2>
+        <Button onClick={startGame} variant="primary" className="mb-4 w-full">
+          Start
+        </Button>
+        <div
+          onClick={handleClick}
+          className={`w-full h-24 flex items-center justify-center rounded-lg text-2xl font-semibold cursor-pointer mb-4 transition-colors ${
+            waiting
+              ? "bg-gray-300 text-gray-500"
+              : "bg-blue-500 text-white hover:bg-blue-600"
+          }`}
+        >
+          {message}
+        </div>
+        {reactionTime && (
+          <div className="text-green-600 font-bold">
+            Try again to improve your score!
+          </div>
+        )}
+      </Card>
     </div>
   );
 }
