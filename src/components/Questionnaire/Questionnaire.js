@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const initialQuestions = [
   {
@@ -59,31 +64,53 @@ export default function Questionnaire() {
   };
 
   return (
-    <div>
-      <h2>Daily Questionnaire</h2>
-      {!showFollowUp ? (
-        <div>
-          <label>{currentQuestion.text}</label>
-          <input
-            type={currentQuestion.type}
-            min={currentQuestion.min}
-            max={currentQuestion.max}
-            value={answers[currentQuestion.id] || ""}
-            onChange={handleChange}
-          />
-          <button onClick={handleNext}>Next</button>
-        </div>
-      ) : (
-        <div>
-          <label>{followUpQuestions.caffeine.question.text}</label>
-          <input
-            type="text"
-            value={answers.caffeine_times || ""}
-            onChange={handleFollowUp}
-          />
-          <button onClick={handleFollowUpNext}>Finish</button>
-        </div>
-      )}
-    </div>
+    <Card>
+      <CardContent>
+        <Typography variant="h4" gutterBottom>
+          Daily Questionnaire
+        </Typography>
+        {!showFollowUp ? (
+          <div>
+            <Typography>{currentQuestion.text}</Typography>
+            <TextField
+              type={currentQuestion.type}
+              label={currentQuestion.text}
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              inputProps={{
+                min: currentQuestion.min,
+                max: currentQuestion.max,
+              }}
+              value={answers[currentQuestion.id] || ""}
+              onChange={handleChange}
+            />
+            <Button variant="contained" color="primary" onClick={handleNext}>
+              Next
+            </Button>
+          </div>
+        ) : (
+          <div>
+            <Typography>{followUpQuestions.caffeine.question.text}</Typography>
+            <TextField
+              type="text"
+              label={followUpQuestions.caffeine.question.text}
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              value={answers.caffeine_times || ""}
+              onChange={handleFollowUp}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleFollowUpNext}
+            >
+              Finish
+            </Button>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

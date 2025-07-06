@@ -1,22 +1,32 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
 export default function MiniGames() {
   return (
-    <div>
-      <h2>Mini-Games</h2>
-      <ul>
-        <li>
-          <Link to="pvt">PVT (Reaction Time)</Link>
-        </li>
-        <li>
-          <Link to="#">Stroop Test (Coming Soon)</Link>
-        </li>
-        <li>
-          <Link to="#">N-Back Test (Coming Soon)</Link>
-        </li>
-      </ul>
-      <Outlet />
-    </div>
+    <Card>
+      <CardContent>
+        <Typography variant="h4" gutterBottom>
+          Mini-Games
+        </Typography>
+        <List>
+          <ListItem button component={Link} to="pvt">
+            <ListItemText primary="PVT (Reaction Time)" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Stroop Test (Coming Soon)" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="N-Back Test (Coming Soon)" />
+          </ListItem>
+        </List>
+        <Outlet />
+      </CardContent>
+    </Card>
   );
 }

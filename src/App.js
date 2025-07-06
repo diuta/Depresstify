@@ -6,17 +6,32 @@ import PVT from "./components/MiniGames/PVT";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MoodTracker from "./components/MoodTracker/MoodTracker";
 import Settings from "./components/Settings/Settings";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
 
 function App() {
   return (
     <Router>
-      <nav style={{ marginBottom: 20 }}>
-        <Link to="/">Dashboard</Link> |{" "}
-        <Link to="/questionnaire">Questionnaire</Link> |{" "}
-        <Link to="/minigames">Mini-Games</Link> |{" "}
-        <Link to="/mood">Mood Tracker</Link> |{" "}
-        <Link to="/settings">Settings</Link>
-      </nav>
+      <AppBar position="static">
+        <Toolbar>
+          <Button color="inherit" component={Link} to="/">
+            Dashboard
+          </Button>
+          <Button color="inherit" component={Link} to="/questionnaire">
+            Questionnaire
+          </Button>
+          <Button color="inherit" component={Link} to="/minigames">
+            Mini-Games
+          </Button>
+          <Button color="inherit" component={Link} to="/mood">
+            Mood Tracker
+          </Button>
+          <Button color="inherit" component={Link} to="/settings">
+            Settings
+          </Button>
+        </Toolbar>
+      </AppBar>
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/questionnaire" element={<Questionnaire />} />

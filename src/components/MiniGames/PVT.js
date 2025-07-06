@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
 export default function PVT() {
   const [waiting, setWaiting] = useState(false);
@@ -31,27 +36,43 @@ export default function PVT() {
   };
 
   return (
-    <div>
-      <h2>PVT Reaction Time Test</h2>
-      <button onClick={startGame}>Start</button>
-      <div
-        onClick={handleClick}
-        style={{
-          marginTop: 20,
-          width: 200,
-          height: 100,
-          background: waiting ? "#ccc" : "#4caf50",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#fff",
-          fontSize: 24,
-          cursor: "pointer",
-        }}
-      >
-        {message}
-      </div>
-      {reactionTime && <div>Try again to improve your score!</div>}
-    </div>
+    <Card>
+      <CardContent>
+        <Typography variant="h4" gutterBottom>
+          PVT Reaction Time Test
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={startGame}
+          sx={{ mb: 2 }}
+        >
+          Start
+        </Button>
+        <Box
+          onClick={handleClick}
+          sx={{
+            mt: 2,
+            width: 200,
+            height: 100,
+            backgroundColor: waiting ? "#ccc" : "#4caf50",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#fff",
+            fontSize: 24,
+            cursor: "pointer",
+            borderRadius: 2,
+          }}
+        >
+          {message}
+        </Box>
+        {reactionTime && (
+          <Typography sx={{ mt: 2 }}>
+            Try again to improve your score!
+          </Typography>
+        )}
+      </CardContent>
+    </Card>
   );
 }
